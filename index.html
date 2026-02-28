@@ -135,7 +135,6 @@
             <button id="loadBtn">读取云端内容</button>
             <button id="saveBtn">保存到云端</button>
             <button id="clearBtn" class="secondary">清空内容</button>
-            <!-- 新增的两个按钮 -->
             <button id="pasteFromClipboardBtn" class="special">剪贴板内容上传</button>
             <button id="copyToClipboardBtn" class="special">复制到剪贴板</button>
         </div>
@@ -336,28 +335,7 @@
         saveBtn.addEventListener('click', saveContent);
         clearBtn.addEventListener('click', clearContent);
         pasteFromClipboardBtn.addEventListener('click', pasteFromClipboardAndUpload);
-        copyToClipboardBtn.addEventListener('click', copyFromApiToClipboard); // 绑定新的复制逻辑
-        
-        // 快捷键支持 (Ctrl+S 保存, Ctrl+L 读取, Ctrl+C 复制, Ctrl+V 粘贴上传)
-        document.addEventListener('keydown', (e) => {
-            if (e.ctrlKey) {
-                if (e.key === 's') {
-                    e.preventDefault();
-                    saveContent();
-                } else if (e.key === 'l') {
-                    e.preventDefault();
-                    loadContent();
-                } else if (e.key === 'c' && !contentArea.disabled) {
-                    // 只在文本框未禁用时才拦截Ctrl+C
-                    e.preventDefault();
-                    copyFromApiToClipboard(); // 使用新的复制逻辑
-                } else if (e.key === 'v' && !contentArea.disabled) {
-                    // 只在文本框未禁用时才拦截Ctrl+V
-                    e.preventDefault();
-                    pasteFromClipboardAndUpload();
-                }
-            }
-        });
+        copyToClipboardBtn.addEventListener('click', copyFromApiToClipboard);
     </script>
 </body>
 </html>
